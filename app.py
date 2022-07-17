@@ -6,45 +6,45 @@ from dash import dcc
 import plotly.graph_objs as go
 
 ########### Define your variables
-beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
-ibu_values=[35, 60, 85, 75]
-abv_values=[5.4, 7.1, 9.2, 4.3]
-color1='darkred'
-color2='orange'
-mytitle='Beer Comparison'
+sports=['Soccer', 'Cricket', 'Basketball', 'Golf', 'Tennis', 'Volleyball', 'Baseball', 'Football']
+total_fans=[3.5, 2.5, 2.4, 0.4, 1.0, 0.9, 0.5, 0.41]
+highest_salary=[1.22, .34, 1.25, .7, .85, 1.25, .49, .73]
+color2='green'
+color1='midnightblue'
+mytitle='Worldwide Sports Comparison'
 
-label1='IBU'
-label2='ABV'
+label1='Fans Billion'
+label2='Salary 100M'
 
 ########### Set up the chart
 
-def make_that_cool_barchart(beers, ibu_values, abv_values, color1, color2, mytitle):
-    bitterness = go.Bar(
-        x=beers,
-        y=ibu_values,
+def make_that_cool_barchart(sports, total_fans, highest_salary, color1, color2, mytitle):
+    fans_billions = go.Bar(
+        x=sports,
+        y=total_fans,
         name=label1,
         marker={'color':color1}
     )
-    alcohol = go.Bar(
-        x=beers,
-        y=abv_values,
+    salary_millions = go.Bar(
+        x=sports,
+        y=highest_salary,
         name=label2,
         marker={'color':color2}
     )
 
-    beer_data = [bitterness, alcohol]
-    beer_layout = go.Layout(
+    sports_data = [fans_billions, salary_millions]
+    sports_layout = go.Layout(
         barmode='group',
         title = mytitle
     )
 
-    beer_fig = go.Figure(data=beer_data, layout=beer_layout)
-    return beer_fig
+    sports_fig = go.Figure(data=sports_data, layout=sports_layout)
+    return sports_fig
 
 
 ######### Run the function #######
 
 if __name__ == '__main__':
-    fig = make_that_cool_barchart(beers, ibu_values, abv_values, color1, color2, mytitle)
-    fig.write_html('docs/barchart.html')
+    fig = make_that_cool_barchart(sports, total_fans, highest_salary, color1, color2, mytitle)
+    fig.write_html('docs/barchart_mine.html')
     print('We successfully updated the barchart!')
